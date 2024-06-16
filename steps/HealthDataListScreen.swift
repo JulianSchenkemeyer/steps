@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct HealthDataListScreen: View {
+    @State private var isShowingAddData = false
+    
     var healthMetric: String
     
     var body: some View {
@@ -23,6 +25,18 @@ struct HealthDataListScreen: View {
             }
         }
         .navigationTitle(healthMetric)
+        .sheet(isPresented: $isShowingAddData) {
+            AddNewHealthDataSheet()
+        }
+        .toolbar {
+            ToolbarItem(placement: .topBarTrailing) {
+                Button {
+                    isShowingAddData = true
+                } label: {
+                    Label("Add Data", systemImage: "plus")
+                }
+            }
+        }
     }
 }
 

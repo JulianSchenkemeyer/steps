@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		24A456A12C1F2F2A00FEFADD /* HealthDataListScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A456A02C1F2F2A00FEFADD /* HealthDataListScreen.swift */; };
+		24A456A32C1F38D400FEFADD /* AddNewHealthDataSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A456A22C1F38D400FEFADD /* AddNewHealthDataSheet.swift */; };
 		24FED7472C1EFA11007F98D0 /* stepsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FED7462C1EFA11007F98D0 /* stepsApp.swift */; };
 		24FED7492C1EFA11007F98D0 /* DashboardScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FED7482C1EFA11007F98D0 /* DashboardScreen.swift */; };
 		24FED74B2C1EFA13007F98D0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 24FED74A2C1EFA13007F98D0 /* Assets.xcassets */; };
@@ -16,6 +17,7 @@
 
 /* Begin PBXFileReference section */
 		24A456A02C1F2F2A00FEFADD /* HealthDataListScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthDataListScreen.swift; sourceTree = "<group>"; };
+		24A456A22C1F38D400FEFADD /* AddNewHealthDataSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewHealthDataSheet.swift; sourceTree = "<group>"; };
 		24FED7432C1EFA11007F98D0 /* steps.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = steps.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		24FED7462C1EFA11007F98D0 /* stepsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = stepsApp.swift; sourceTree = "<group>"; };
 		24FED7482C1EFA11007F98D0 /* DashboardScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardScreen.swift; sourceTree = "<group>"; };
@@ -56,6 +58,7 @@
 				24FED7462C1EFA11007F98D0 /* stepsApp.swift */,
 				24FED7482C1EFA11007F98D0 /* DashboardScreen.swift */,
 				24A456A02C1F2F2A00FEFADD /* HealthDataListScreen.swift */,
+				24A456A22C1F38D400FEFADD /* AddNewHealthDataSheet.swift */,
 				24FED74A2C1EFA13007F98D0 /* Assets.xcassets */,
 				24FED74C2C1EFA13007F98D0 /* Preview Content */,
 			);
@@ -140,6 +143,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				24A456A32C1F38D400FEFADD /* AddNewHealthDataSheet.swift in Sources */,
 				24FED7492C1EFA11007F98D0 /* DashboardScreen.swift in Sources */,
 				24A456A12C1F2F2A00FEFADD /* HealthDataListScreen.swift in Sources */,
 				24FED7472C1EFA11007F98D0 /* stepsApp.swift in Sources */,
