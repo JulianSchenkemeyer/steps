@@ -17,8 +17,14 @@ struct AddNewHealthDataSheet: View {
         NavigationStack {
             Form {
                 DatePicker("Date", selection: $addDataDate, displayedComponents: .date)
-                TextField("Value", text: $addDataValue)
-                    .keyboardType(.numberPad)
+                HStack {
+                    Text("Steps")
+                    Spacer()
+                    TextField("Value", text: $addDataValue)
+                        .keyboardType(.numberPad)
+                        .multilineTextAlignment(.trailing)
+                        .frame(width: 140)
+                }
             }
             .navigationTitle("Add new Data")
             .navigationBarTitleDisplayMode(.inline)
