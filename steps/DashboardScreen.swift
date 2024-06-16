@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ContentView: View {
+struct DashboardScreen: View {
     var body: some View {
         NavigationStack {
             ScrollView {
@@ -50,5 +50,5 @@ struct ContentView: View {
 }
 
 #Preview {
-    ContentView()
+    DashboardScreen()
 }
