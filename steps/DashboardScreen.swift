@@ -9,6 +9,8 @@ import SwiftUI
 
 struct DashboardScreen: View {
     @AppStorage("hasSeenPermissionPriming") private var hasSeenPermissionPriming = false
+    @Environment(HealthKitManager.self) private var hkManager
+    
     @State private var isShowingPermissionPrimingSheet = false
     
     var body: some View {
@@ -50,6 +52,11 @@ struct DashboardScreen: View {
             }
             .onAppear {
                 isShowingPermissionPrimingSheet = !hasSeenPermissionPriming
+//                #if targetEnvironment(simulator)
+//                Task {
+//                    await hkManager.addMockData()
+//                }
+//                #endif
             }
             .fullScreenCover(isPresented: $isShowingPermissionPrimingSheet) {
                 HealthPermissionPrimingSheet()
