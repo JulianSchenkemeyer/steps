@@ -15,7 +15,7 @@ class HealthKitManager {
     let store = HKHealthStore()
     let types: Set = [HKQuantityType(.stepCount)]
     
-    func fetchStepsData() async {
+    func fetchStepsData() async -> [HealthMetric] {
         let calendar = Calendar.current
         let today = calendar.startOfDay(for: .now)
         let end = calendar.date(byAdding: .day, value: 1, to: today)!
@@ -32,9 +32,11 @@ class HealthKitManager {
         let result = try! await stepsQuery.result(for: store)
         print("✅ fetched steps")
         
-        for step in result.statistics() {
-            print(step.sumQuantity() ?? 0)
+        let healthMetrics = result.statistics().map {
+            HealthMetric(date: $0.startDate, value: $0.sumQuantity()?.doubleValue(for: .count()) ?? 0)
         }
+        
+        return healthMetrics
     }
     
     #if targetEnvironment(simulator)

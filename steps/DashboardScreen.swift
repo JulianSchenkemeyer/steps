@@ -6,12 +6,14 @@
 //
 
 import SwiftUI
+import Charts
 
 struct DashboardScreen: View {
     @AppStorage("hasSeenPermissionPriming") private var hasSeenPermissionPriming = false
     @Environment(HealthKitManager.self) private var hkManager
     
     @State private var isShowingPermissionPrimingSheet = false
+    @State private var steps: [HealthMetric] = []
     
     var body: some View {
         NavigationStack {
@@ -35,9 +37,17 @@ struct DashboardScreen: View {
                         .foregroundStyle(.secondary)
                     }
                     
-                    RoundedRectangle(cornerRadius: 12)
-                        .foregroundStyle(.secondary)
-                        .frame(height: 150)
+//                    RoundedRectangle(cornerRadius: 12)
+//                        .foregroundStyle(.secondary)
+//                        .frame(height: 150)
+                    Chart(steps) { step in
+                        BarMark(
+                            x: .value("Date",
+                                      step.date,
+                                      unit: .day),
+                            y: .value("Count", step.value))
+                    }
+                    .frame(height: 150)
                 }
                 .padding()
                 .background {
@@ -54,15 +64,13 @@ struct DashboardScreen: View {
                 isShowingPermissionPrimingSheet = !hasSeenPermissionPriming
                 
                 //TODO: abort if user has no permission
-                await hkManager.fetchStepsData()
-//                #if targetEnvironment(simulator)
-//                await hkManager.addMockData()
-//                #endif
+                steps = await hkManager.fetchStepsData()
             }
             .fullScreenCover(isPresented: $isShowingPermissionPrimingSheet) {
                 HealthPermissionPrimingSheet()
             }
         }
+        .tint(.cyan)
     }
 }
 
