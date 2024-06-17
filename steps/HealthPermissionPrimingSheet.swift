@@ -6,8 +6,15 @@
 //
 
 import SwiftUI
+import HealthKitUI
 
 struct HealthPermissionPrimingSheet: View {
+    @Environment(HealthKitManager.self) private var hkManager
+    @Environment(\.dismiss) private var dismiss
+    
+    @State private var isShowingHealthKitPermissions = false
+    
+    
     let description = """
 This app displays your step data in interactive charts.
 
@@ -31,7 +38,7 @@ You can also add new step data to Apple Health from this app. Your data is priva
                     .foregroundStyle(.secondary)
             }
             Button {
-                // Permission
+                isShowingHealthKitPermissions = true
             } label: {
                 Text("Connect to Apple Health")
             }
@@ -39,9 +46,22 @@ You can also add new step data to Apple Health from this app. Your data is priva
             .tint(.pink)
         }
         .padding(20)
+        .healthDataAccessRequest(store: hkManager.store,
+                                 shareTypes: hkManager.types,
+                                 readTypes: hkManager.types,
+                                 trigger: isShowingHealthKitPermissions) { result in
+            switch result {
+            case .success(let success):
+                dismiss()
+            case .failure(let failure):
+                // Handle failure
+                dismiss()
+            }
+        }
     }
 }
 
 #Preview {
     HealthPermissionPrimingSheet()
+        .environment(HealthKitManager())
 }
