@@ -10,6 +10,7 @@
 		24A456A12C1F2F2A00FEFADD /* HealthDataListScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A456A02C1F2F2A00FEFADD /* HealthDataListScreen.swift */; };
 		24A456A32C1F38D400FEFADD /* AddNewHealthDataSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A456A22C1F38D400FEFADD /* AddNewHealthDataSheet.swift */; };
 		24A456A52C20333B00FEFADD /* HealthPermissionPrimingSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A456A42C20333B00FEFADD /* HealthPermissionPrimingSheet.swift */; };
+		24A456A82C2040A500FEFADD /* HealthKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A456A72C2040A500FEFADD /* HealthKitManager.swift */; };
 		24FED7472C1EFA11007F98D0 /* stepsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FED7462C1EFA11007F98D0 /* stepsApp.swift */; };
 		24FED7492C1EFA11007F98D0 /* DashboardScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FED7482C1EFA11007F98D0 /* DashboardScreen.swift */; };
 		24FED74B2C1EFA13007F98D0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 24FED74A2C1EFA13007F98D0 /* Assets.xcassets */; };
@@ -21,6 +22,7 @@
 		24A456A22C1F38D400FEFADD /* AddNewHealthDataSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewHealthDataSheet.swift; sourceTree = "<group>"; };
 		24A456A42C20333B00FEFADD /* HealthPermissionPrimingSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthPermissionPrimingSheet.swift; sourceTree = "<group>"; };
 		24A456A62C203C8700FEFADD /* steps.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = steps.entitlements; sourceTree = "<group>"; };
+		24A456A72C2040A500FEFADD /* HealthKitManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKitManager.swift; sourceTree = "<group>"; };
 		24FED7432C1EFA11007F98D0 /* steps.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = steps.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		24FED7462C1EFA11007F98D0 /* stepsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = stepsApp.swift; sourceTree = "<group>"; };
 		24FED7482C1EFA11007F98D0 /* DashboardScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardScreen.swift; sourceTree = "<group>"; };
@@ -64,6 +66,7 @@
 				24A456A02C1F2F2A00FEFADD /* HealthDataListScreen.swift */,
 				24A456A22C1F38D400FEFADD /* AddNewHealthDataSheet.swift */,
 				24A456A42C20333B00FEFADD /* HealthPermissionPrimingSheet.swift */,
+				24A456A72C2040A500FEFADD /* HealthKitManager.swift */,
 				24FED74A2C1EFA13007F98D0 /* Assets.xcassets */,
 				24FED74C2C1EFA13007F98D0 /* Preview Content */,
 			);
@@ -150,6 +153,7 @@
 			files = (
 				24A456A32C1F38D400FEFADD /* AddNewHealthDataSheet.swift in Sources */,
 				24FED7492C1EFA11007F98D0 /* DashboardScreen.swift in Sources */,
+				24A456A82C2040A500FEFADD /* HealthKitManager.swift in Sources */,
 				24A456A12C1F2F2A00FEFADD /* HealthDataListScreen.swift in Sources */,
 				24A456A52C20333B00FEFADD /* HealthPermissionPrimingSheet.swift in Sources */,
 				24FED7472C1EFA11007F98D0 /* stepsApp.swift in Sources */,
@@ -290,6 +294,8 @@
 				DEVELOPMENT_TEAM = 8MD4CZRYZD;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "The app shows your step data in an interactive chart.";
+				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "The app allows you to add step data to Apple Health";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -320,6 +326,8 @@
 				DEVELOPMENT_TEAM = 8MD4CZRYZD;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "The app shows your step data in an interactive chart.";
+				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "The app allows you to add step data to Apple Health";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
