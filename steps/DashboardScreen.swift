@@ -37,9 +37,6 @@ struct DashboardScreen: View {
                         .foregroundStyle(.secondary)
                     }
                     
-//                    RoundedRectangle(cornerRadius: 12)
-//                        .foregroundStyle(.secondary)
-//                        .frame(height: 150)
                     Chart(steps) { step in
                         BarMark(
                             x: .value("Date",
