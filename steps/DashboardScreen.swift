@@ -50,12 +50,13 @@ struct DashboardScreen: View {
             .navigationDestination(for: String.self) { metric in
                 Text(metric)
             }
-            .onAppear {
+            .task {
                 isShowingPermissionPrimingSheet = !hasSeenPermissionPriming
+                
+                //TODO: abort if user has no permission
+                await hkManager.fetchStepsData()
 //                #if targetEnvironment(simulator)
-//                Task {
-//                    await hkManager.addMockData()
-//                }
+//                await hkManager.addMockData()
 //                #endif
             }
             .fullScreenCover(isPresented: $isShowingPermissionPrimingSheet) {
