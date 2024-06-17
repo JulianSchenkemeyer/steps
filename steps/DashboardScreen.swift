@@ -60,4 +60,5 @@ struct DashboardScreen: View {
 
 #Preview {
     DashboardScreen()
+        .environment(HealthKitManager())
 }
