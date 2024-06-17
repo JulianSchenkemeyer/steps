@@ -13,8 +13,29 @@ import Observation
 @Observable
 class HealthKitManager {
     let store = HKHealthStore()
-    
     let types: Set = [HKQuantityType(.stepCount)]
+    
+    func fetchStepsData() async {
+        let calendar = Calendar.current
+        let today = calendar.startOfDay(for: .now)
+        let end = calendar.date(byAdding: .day, value: 1, to: today)!
+        let start = calendar.date(byAdding: .day, value: -28, to: today)!
+        
+        let queryPredicate = HKQuery.predicateForSamples(withStart: start, end: end)
+        let samplePredicate = HKSamplePredicate.quantitySample(type: HKQuantityType(.stepCount),
+                                                               predicate: queryPredicate)
+        let stepsQuery = HKStatisticsCollectionQueryDescriptor(predicate: samplePredicate,
+                                                                     options: .cumulativeSum,
+                                                                     anchorDate: end,
+                                                                     intervalComponents: .init(day: 1))
+        
+        let result = try! await stepsQuery.result(for: store)
+        print("✅ fetched steps")
+        
+        for step in result.statistics() {
+            print(step.sumQuantity() ?? 0)
+        }
+    }
     
     #if targetEnvironment(simulator)
     func addMockData() async {
