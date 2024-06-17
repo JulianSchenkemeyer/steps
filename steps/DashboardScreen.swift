@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct DashboardScreen: View {
+    @AppStorage("hasSeenPermissionPriming") private var hasSeenPermissionPriming = false
+    @State private var isShowingPermissionPrimingSheet = false
+    
     var body: some View {
         NavigationStack {
             ScrollView {
@@ -44,6 +47,12 @@ struct DashboardScreen: View {
             .navigationTitle("Dashboard")
             .navigationDestination(for: String.self) { metric in
                 Text(metric)
+            }
+            .onAppear {
+                isShowingPermissionPrimingSheet = !hasSeenPermissionPriming
+            }
+            .fullScreenCover(isPresented: $isShowingPermissionPrimingSheet) {
+                HealthPermissionPrimingSheet()
             }
         }
     }
