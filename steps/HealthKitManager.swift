@@ -29,7 +29,9 @@ class HealthKitManager {
                                                                      anchorDate: end,
                                                                      intervalComponents: .init(day: 1))
         
-        let result = try! await stepsQuery.result(for: store)
+        guard let result = try? await stepsQuery.result(for: store) else {
+            return []
+        }
         print("✅ fetched steps")
         
         let healthMetrics = result.statistics().map {
