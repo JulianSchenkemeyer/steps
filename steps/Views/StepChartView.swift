@@ -114,5 +114,5 @@ struct StepChart: View {
 }
 
 #Preview {
-    StepChart()
+    StepChart(steps: HealthMockData.getSteps())
 }
