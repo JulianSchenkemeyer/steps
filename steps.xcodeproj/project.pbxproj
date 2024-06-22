@@ -43,6 +43,40 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		24EE9CCB2C2739DE001057C6 /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				24FED7482C1EFA11007F98D0 /* DashboardScreen.swift */,
+				24A456A02C1F2F2A00FEFADD /* HealthDataListScreen.swift */,
+			);
+			path = Screens;
+			sourceTree = "<group>";
+		};
+		24EE9CCC2C273A00001057C6 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				24A456A22C1F38D400FEFADD /* AddNewHealthDataSheet.swift */,
+				24A456A42C20333B00FEFADD /* HealthPermissionPrimingSheet.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		24EE9CCD2C273A0F001057C6 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				24A456A92C20844B00FEFADD /* HealthMetric.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		24EE9CCE2C273A16001057C6 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				24A456A72C2040A500FEFADD /* HealthKitManager.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
 		24FED73A2C1EFA11007F98D0 = {
 			isa = PBXGroup;
 			children = (
@@ -64,12 +98,10 @@
 			children = (
 				24A456A62C203C8700FEFADD /* steps.entitlements */,
 				24FED7462C1EFA11007F98D0 /* stepsApp.swift */,
-				24FED7482C1EFA11007F98D0 /* DashboardScreen.swift */,
-				24A456A02C1F2F2A00FEFADD /* HealthDataListScreen.swift */,
-				24A456A22C1F38D400FEFADD /* AddNewHealthDataSheet.swift */,
-				24A456A42C20333B00FEFADD /* HealthPermissionPrimingSheet.swift */,
-				24A456A72C2040A500FEFADD /* HealthKitManager.swift */,
-				24A456A92C20844B00FEFADD /* HealthMetric.swift */,
+				24EE9CCE2C273A16001057C6 /* Managers */,
+				24EE9CCD2C273A0F001057C6 /* Models */,
+				24EE9CCC2C273A00001057C6 /* Views */,
+				24EE9CCB2C2739DE001057C6 /* Screens */,
 				24FED74A2C1EFA13007F98D0 /* Assets.xcassets */,
 				24FED74C2C1EFA13007F98D0 /* Preview Content */,
 			);
