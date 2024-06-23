@@ -91,6 +91,14 @@
 			path = Managers;
 			sourceTree = "<group>";
 		};
+		24EE9CDC2C27FEFB001057C6 /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				24EE9CD52C27EC62001057C6 /* ChartMath.swift */,
+			);
+			path = Helper;
+			sourceTree = "<group>";
+		};
 		24FED73A2C1EFA11007F98D0 = {
 			isa = PBXGroup;
 			children = (
@@ -112,13 +120,13 @@
 			children = (
 				24A456A62C203C8700FEFADD /* steps.entitlements */,
 				24FED7462C1EFA11007F98D0 /* stepsApp.swift */,
+				24EE9CDC2C27FEFB001057C6 /* Helper */,
 				24EE9CCE2C273A16001057C6 /* Managers */,
 				24EE9CCD2C273A0F001057C6 /* Models */,
 				24EE9CCC2C273A00001057C6 /* Views */,
 				24EE9CCB2C2739DE001057C6 /* Screens */,
 				24FED74A2C1EFA13007F98D0 /* Assets.xcassets */,
 				24FED74C2C1EFA13007F98D0 /* Preview Content */,
-				24EE9CD52C27EC62001057C6 /* ChartMath.swift */,
 				24EE9CD72C27ED30001057C6 /* Date+Ext.swift */,
 			);
 			path = steps;
