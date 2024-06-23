@@ -12,7 +12,7 @@ import Charts
 struct AverageStepsPerWeekdayView: View {
     var chartData: [HealthMetric]
     
-    @State private var selectedData: Double?
+    @State private var selectedData: Double? = 0
     
     var selectedWeekday: HealthMetric? {
         guard let selectedData else { return nil }
@@ -60,6 +60,24 @@ struct AverageStepsPerWeekdayView: View {
                     }
                 }
                 .chartAngleSelection(value: $selectedData.animation(.easeInOut))
+                .chartBackground { proxy in
+                    GeometryReader { geometry in
+                        if let plotFrame = proxy.plotFrame, let selectedWeekday {
+                            let frame = geometry[plotFrame]
+                            VStack {
+                                Text(selectedWeekday.date.weekdayTitle)
+                                    .font(.title3.bold())
+                                    .contentTransition(.identity)
+                                
+                                Text(selectedWeekday.value, format: .number.precision(.fractionLength(0)))
+                                    .contentTransition(.numericText())
+                                    .fontWeight(.medium)
+                                    .foregroundStyle(.secondary)
+                            }
+                            .position(x: frame.midX, y: frame.midY)
+                        }
+                    }
+                }
             }
         }
         .frame(height: 300)
@@ -69,6 +87,13 @@ struct AverageStepsPerWeekdayView: View {
                 .fill(Material.thin)
         }
     }
+    
+    //    var annotation: some View {
+    //        guard let selectedWeekday else { return EmptyView() }
+    //            return VStack {
+    //
+    //            }
+    //    }
 }
 
 #Preview {
