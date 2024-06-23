@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		24A456A12C1F2F2A00FEFADD /* HealthDataListScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A456A02C1F2F2A00FEFADD /* HealthDataListScreen.swift */; };
+		24A456A12C1F2F2A00FEFADD /* HealthDataOverviewScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A456A02C1F2F2A00FEFADD /* HealthDataOverviewScreen.swift */; };
 		24A456A32C1F38D400FEFADD /* AddNewHealthDataSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A456A22C1F38D400FEFADD /* AddNewHealthDataSheet.swift */; };
 		24A456A52C20333B00FEFADD /* HealthPermissionPrimingSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A456A42C20333B00FEFADD /* HealthPermissionPrimingSheet.swift */; };
 		24A456A82C2040A500FEFADD /* HealthKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A456A72C2040A500FEFADD /* HealthKitManager.swift */; };
@@ -25,7 +25,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		24A456A02C1F2F2A00FEFADD /* HealthDataListScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthDataListScreen.swift; sourceTree = "<group>"; };
+		24A456A02C1F2F2A00FEFADD /* HealthDataOverviewScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthDataOverviewScreen.swift; sourceTree = "<group>"; };
 		24A456A22C1F38D400FEFADD /* AddNewHealthDataSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewHealthDataSheet.swift; sourceTree = "<group>"; };
 		24A456A42C20333B00FEFADD /* HealthPermissionPrimingSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthPermissionPrimingSheet.swift; sourceTree = "<group>"; };
 		24A456A62C203C8700FEFADD /* steps.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = steps.entitlements; sourceTree = "<group>"; };
@@ -59,7 +59,7 @@
 			isa = PBXGroup;
 			children = (
 				24FED7482C1EFA11007F98D0 /* DashboardScreen.swift */,
-				24A456A02C1F2F2A00FEFADD /* HealthDataListScreen.swift */,
+				24A456A02C1F2F2A00FEFADD /* HealthDataOverviewScreen.swift */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -231,7 +231,7 @@
 				24EE9CD82C27ED30001057C6 /* Date+Ext.swift in Sources */,
 				24FED7492C1EFA11007F98D0 /* DashboardScreen.swift in Sources */,
 				24A456A82C2040A500FEFADD /* HealthKitManager.swift in Sources */,
-				24A456A12C1F2F2A00FEFADD /* HealthDataListScreen.swift in Sources */,
+				24A456A12C1F2F2A00FEFADD /* HealthDataOverviewScreen.swift in Sources */,
 				24A456A52C20333B00FEFADD /* HealthPermissionPrimingSheet.swift in Sources */,
 				24FED7472C1EFA11007F98D0 /* stepsApp.swift in Sources */,
 				24EE9CD62C27EC62001057C6 /* ChartMath.swift in Sources */,

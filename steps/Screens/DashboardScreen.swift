@@ -27,7 +27,7 @@ struct DashboardScreen: View {
             .padding()
             .navigationTitle("Dashboard")
             .navigationDestination(for: String.self) { metric in
-                Text(metric)
+                HealthDataOverviewScreen(healthMetric: "Steps")
             }
             .task {
                 isShowingPermissionPrimingSheet = !hasSeenPermissionPriming
