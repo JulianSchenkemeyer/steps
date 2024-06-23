@@ -14,12 +14,15 @@ struct DashboardScreen: View {
     
     @State private var isShowingPermissionPrimingSheet = false
     @State private var steps: [HealthMetric] = []
+    
+    var averageStepsPerWeekday: [HealthMetric] { ChartMath.averageWeekdayCount(for: steps) }
 
     
     var body: some View {
         NavigationStack {
             ScrollView {
                 StepChart(steps: steps)
+                AverageStepsPerWeekdayView(chartData: averageStepsPerWeekday)
             }
             .padding()
             .navigationTitle("Dashboard")
