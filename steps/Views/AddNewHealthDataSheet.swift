@@ -9,6 +9,7 @@ import SwiftUI
 
 struct AddNewHealthDataSheet: View {
     @Environment(\.dismiss) private var dismiss
+    @Environment(HealthKitManager.self) private var hkManager
     
     @State private var addDataDate: Date = .now
     @State private var addDataValue: String = ""
@@ -31,7 +32,12 @@ struct AddNewHealthDataSheet: View {
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
                     Button("Add") {
-                        // save
+                        Task {
+                            guard let value = Double(addDataValue) else { return }
+                            
+                            await hkManager.addStepData(date: addDataDate ,value: value)
+                            dismiss()
+                        }
                     }
                 }
                 
@@ -50,5 +56,6 @@ struct AddNewHealthDataSheet: View {
     Text("")
         .sheet(isPresented: .constant(true)) {
             AddNewHealthDataSheet()
+                .environment(HealthKitManager())
         }
 }

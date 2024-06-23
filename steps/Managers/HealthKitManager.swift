@@ -41,6 +41,13 @@ class HealthKitManager {
         return healthMetrics
     }
     
+    func addStepData(date: Date, value: Double) async {
+        let stepValue = HKQuantity(unit: .count(), doubleValue: value)
+        let stepSample = HKQuantitySample(type: HKQuantityType(.stepCount), quantity: stepValue, start: date, end: date)
+        
+        try! await store.save(stepSample)
+    }
+    
     #if targetEnvironment(simulator)
     func addMockData() async {
         var mockSample: [HKQuantitySample] = []

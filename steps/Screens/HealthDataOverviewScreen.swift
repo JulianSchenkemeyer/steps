@@ -30,7 +30,11 @@ struct HealthDataOverviewScreen: View {
         .task {
             healthData = await hkManager.fetchStepsData()
         }
-        .sheet(isPresented: $isShowingAddData) {
+        .sheet(isPresented: $isShowingAddData, onDismiss: {
+            Task {
+                healthData = await hkManager.fetchStepsData()
+            }
+        }) {
             AddNewHealthDataSheet()
         }
         .toolbar {
