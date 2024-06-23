@@ -60,6 +60,11 @@ struct AverageStepsPerWeekdayView: View {
                     }
                 }
                 .chartAngleSelection(value: $selectedData.animation(.easeInOut))
+                .onChange(of: selectedData) { old, new in
+                    if new == nil {
+                        selectedData = old
+                    }
+                }
                 .chartBackground { proxy in
                     GeometryReader { geometry in
                         if let plotFrame = proxy.plotFrame, let selectedWeekday {
@@ -87,13 +92,6 @@ struct AverageStepsPerWeekdayView: View {
                 .fill(Material.thin)
         }
     }
-    
-    //    var annotation: some View {
-    //        guard let selectedWeekday else { return EmptyView() }
-    //            return VStack {
-    //
-    //            }
-    //    }
 }
 
 #Preview {
