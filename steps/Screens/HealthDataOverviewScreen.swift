@@ -7,25 +7,34 @@
 
 import SwiftUI
 
-struct HealthDataListScreen: View {
+struct HealthDataOverviewScreen: View {
+    @Environment(HealthKitManager.self) private var hkManager
     @State private var isShowingAddData = false
+    @State private var healthData: [HealthMetric] = []
     
     var healthMetric: String
     
     var body: some View {
-        List(1..<28) { data in
+        List(healthData.reversed()) { data in
             HStack {
-                Text(Date(), format: .dateTime.month(.abbreviated)
+                Text(data.date, format: .dateTime.month(.abbreviated)
                     .day(.twoDigits)
                     .year(.extended()))
                 
                 Spacer()
                 
-                Text((data * 10000), format: .number)
+                Text(data.value, format: .number.precision(.fractionLength(0)))
             }
         }
         .navigationTitle(healthMetric)
-        .sheet(isPresented: $isShowingAddData) {
+        .task {
+            healthData = await hkManager.fetchStepsData()
+        }
+        .sheet(isPresented: $isShowingAddData, onDismiss: {
+            Task {
+                healthData = await hkManager.fetchStepsData()
+            }
+        }) {
             AddNewHealthDataSheet()
         }
         .toolbar {
@@ -42,6 +51,7 @@ struct HealthDataListScreen: View {
 
 #Preview {
     NavigationStack {
-        HealthDataListScreen(healthMetric: "Steps")
+        HealthDataOverviewScreen(healthMetric: "Steps")
+            .environment(HealthKitManager())
     }
 }
