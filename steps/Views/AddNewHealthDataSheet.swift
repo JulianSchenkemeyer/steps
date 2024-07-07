@@ -31,8 +31,18 @@ struct AddNewHealthDataSheet: View {
             }
             .navigationTitle("Add new Data")
             .navigationBarTitleDisplayMode(.inline)
-            .alert(isPresented: $isShowingError, error: healthManagerError, actions: { _ in
-                
+            .alert(isPresented: $isShowingError, error: healthManagerError, actions: { healthManagerError in
+                switch healthManagerError {
+                case .authorizationNotDetermined, .unableToCompleteRequest:
+                    EmptyView()
+                case .sharingDenied:
+                    Button("Settings") {
+                        UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!)
+                    }
+                    
+                    Button("Cancel", role: .cancel) { }
+                }
+
             }, message: { healthManagerError in
                 Text(healthManagerError.failureReason)
             })
