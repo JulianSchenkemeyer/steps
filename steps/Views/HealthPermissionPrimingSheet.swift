@@ -9,7 +9,6 @@ import SwiftUI
 import HealthKitUI
 
 struct HealthPermissionPrimingSheet: View {
-    @AppStorage("hasSeenPermissionPriming") private var hasSeenPermissionPriming = false
     @Environment(HealthKitManager.self) private var hkManager
     @Environment(\.dismiss) private var dismiss
     
@@ -47,9 +46,6 @@ You can also add new step data to Apple Health from this app. Your data is priva
             .tint(.pink)
         }
         .padding(20)
-        .onAppear {
-            hasSeenPermissionPriming = true
-        }
         .healthDataAccessRequest(store: hkManager.store,
                                  shareTypes: hkManager.types,
                                  readTypes: hkManager.types,

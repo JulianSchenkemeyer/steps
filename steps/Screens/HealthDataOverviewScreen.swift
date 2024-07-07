@@ -28,11 +28,19 @@ struct HealthDataOverviewScreen: View {
         }
         .navigationTitle(healthMetric)
         .task {
-            healthData = await hkManager.fetchStepsData()
+            do {
+                healthData = try await hkManager.fetchStepsData()
+            } catch {
+                
+            }
         }
         .sheet(isPresented: $isShowingAddData, onDismiss: {
             Task {
-                healthData = await hkManager.fetchStepsData()
+                do {
+                    healthData = try await hkManager.fetchStepsData()
+                } catch {
+                    
+                }
             }
         }) {
             AddNewHealthDataSheet()

@@ -33,10 +33,16 @@ struct AddNewHealthDataSheet: View {
                 ToolbarItem(placement: .topBarTrailing) {
                     Button("Add") {
                         Task {
-                            guard let value = Double(addDataValue) else { return }
-                            
-                            await hkManager.addStepData(date: addDataDate ,value: value)
-                            dismiss()
+                            do {
+                                guard let value = Double(addDataValue) else { return }
+                                
+                                try await hkManager.addStepData(date: addDataDate ,value: value)
+                                dismiss()
+                            } catch HealthManagerError.sharingDenied {
+                                
+                            } catch {
+                                
+                            }
                         }
                     }
                 }
