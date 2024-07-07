@@ -13,6 +13,8 @@ struct AddNewHealthDataSheet: View {
     
     @State private var addDataDate: Date = .now
     @State private var addDataValue: String = ""
+    @State private var isShowingError = false
+    @State private var healthManagerError: HealthManagerError = .unableToCompleteRequest
     
     var body: some View {
         NavigationStack {
@@ -29,6 +31,11 @@ struct AddNewHealthDataSheet: View {
             }
             .navigationTitle("Add new Data")
             .navigationBarTitleDisplayMode(.inline)
+            .alert(isPresented: $isShowingError, error: healthManagerError, actions: { _ in
+                
+            }, message: { healthManagerError in
+                Text(healthManagerError.failureReason)
+            })
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
                     Button("Add") {
@@ -39,9 +46,11 @@ struct AddNewHealthDataSheet: View {
                                 try await hkManager.addStepData(date: addDataDate ,value: value)
                                 dismiss()
                             } catch HealthManagerError.sharingDenied {
-                                
+                                healthManagerError = .sharingDenied
+                                isShowingError = true
                             } catch {
-                                
+                                healthManagerError = .unableToCompleteRequest
+                                isShowingError = true
                             }
                         }
                     }

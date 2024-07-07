@@ -9,11 +9,12 @@ import SwiftUI
 import Charts
 
 struct DashboardScreen: View {
-//    @AppStorage("hasSeenPermissionPriming") private var hasSeenPermissionPriming = false
     @Environment(HealthKitManager.self) private var hkManager
     
     @State private var isShowingPermissionPrimingSheet = false
     @State private var steps: [HealthMetric] = []
+    @State private var isShowingError = false
+    @State private var healthManagerError: HealthManagerError = .unableToCompleteRequest
     
     var averageStepsPerWeekday: [HealthMetric] { ChartMath.averageWeekdayCount(for: steps) }
 
@@ -35,9 +36,15 @@ struct DashboardScreen: View {
                 } catch HealthManagerError.authorizationNotDetermined {
                     isShowingPermissionPrimingSheet = true
                 } catch {
-                    
+                    healthManagerError = .unableToCompleteRequest
+                    isShowingError = true
                 }
             }
+            .alert(isPresented: $isShowingError, error: healthManagerError, actions: {_ in 
+                
+            }, message: { healthManagerError in
+                Text(healthManagerError.failureReason)
+            })
             .fullScreenCover(isPresented: $isShowingPermissionPrimingSheet) {
                 HealthPermissionPrimingSheet()
             }
