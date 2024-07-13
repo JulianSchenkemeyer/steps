@@ -11,6 +11,8 @@ struct HealthDataOverviewScreen: View {
     @Environment(HealthKitManager.self) private var hkManager
     @State private var isShowingAddData = false
     @State private var healthData: [HealthMetric] = []
+    @State private var isShowingError = false
+    @State private var healthManagerError: HealthManagerError = .unableToCompleteRequest
     
     var healthMetric: String
     
@@ -27,12 +29,27 @@ struct HealthDataOverviewScreen: View {
             }
         }
         .navigationTitle(healthMetric)
+        .alert(isPresented: $isShowingError, error: healthManagerError, actions: { _ in
+            
+        }, message: { healthManagerError in
+            Text(healthManagerError.failureReason)
+        })
         .task {
-            healthData = await hkManager.fetchStepsData()
+            do {
+                healthData = try await hkManager.fetchStepsData()
+            } catch {
+                healthManagerError = .unableToCompleteRequest
+                isShowingError = true
+            }
         }
         .sheet(isPresented: $isShowingAddData, onDismiss: {
             Task {
-                healthData = await hkManager.fetchStepsData()
+                do {
+                    healthData = try await hkManager.fetchStepsData()
+                } catch {
+                    healthManagerError = .unableToCompleteRequest
+                    isShowingError = true
+                }
             }
         }) {
             AddNewHealthDataSheet()

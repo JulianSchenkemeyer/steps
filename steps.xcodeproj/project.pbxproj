@@ -18,6 +18,7 @@
 		24EE9CD62C27EC62001057C6 /* ChartMath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24EE9CD52C27EC62001057C6 /* ChartMath.swift */; };
 		24EE9CD82C27ED30001057C6 /* Date+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24EE9CD72C27ED30001057C6 /* Date+Ext.swift */; };
 		24EE9CDB2C27F07C001057C6 /* Algorithms in Frameworks */ = {isa = PBXBuildFile; productRef = 24EE9CDA2C27F07C001057C6 /* Algorithms */; };
+		24EE9CE22C3AE589001057C6 /* HealthManagerError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24EE9CE12C3AE589001057C6 /* HealthManagerError.swift */; };
 		24FED7472C1EFA11007F98D0 /* stepsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FED7462C1EFA11007F98D0 /* stepsApp.swift */; };
 		24FED7492C1EFA11007F98D0 /* DashboardScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FED7482C1EFA11007F98D0 /* DashboardScreen.swift */; };
 		24FED74B2C1EFA13007F98D0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 24FED74A2C1EFA13007F98D0 /* Assets.xcassets */; };
@@ -36,6 +37,7 @@
 		24EE9CD32C274600001057C6 /* AverageStepsPerWeekdayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AverageStepsPerWeekdayView.swift; sourceTree = "<group>"; };
 		24EE9CD52C27EC62001057C6 /* ChartMath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartMath.swift; sourceTree = "<group>"; };
 		24EE9CD72C27ED30001057C6 /* Date+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Ext.swift"; sourceTree = "<group>"; };
+		24EE9CE12C3AE589001057C6 /* HealthManagerError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthManagerError.swift; sourceTree = "<group>"; };
 		24FED7432C1EFA11007F98D0 /* steps.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = steps.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		24FED7462C1EFA11007F98D0 /* stepsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = stepsApp.swift; sourceTree = "<group>"; };
 		24FED7482C1EFA11007F98D0 /* DashboardScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardScreen.swift; sourceTree = "<group>"; };
@@ -87,6 +89,7 @@
 			isa = PBXGroup;
 			children = (
 				24A456A72C2040A500FEFADD /* HealthKitManager.swift */,
+				24EE9CE12C3AE589001057C6 /* HealthManagerError.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -226,6 +229,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				24EE9CD22C273D6A001057C6 /* HealthMockData.swift in Sources */,
+				24EE9CE22C3AE589001057C6 /* HealthManagerError.swift in Sources */,
 				24EE9CD02C273AB2001057C6 /* StepChartView.swift in Sources */,
 				24A456A32C1F38D400FEFADD /* AddNewHealthDataSheet.swift in Sources */,
 				24EE9CD82C27ED30001057C6 /* Date+Ext.swift in Sources */,
