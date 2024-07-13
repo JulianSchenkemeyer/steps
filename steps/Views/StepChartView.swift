@@ -92,6 +92,10 @@ struct StepChart: View {
             RoundedRectangle(cornerRadius: 12)
                 .fill(Material.thin)
         }
+        .sensoryFeedback(.selection, trigger: selectedDate) { old, new in
+            guard let old, let new else { return false }
+            return old.weekdayInt != new.weekdayInt
+        }
     }
     
     var annotationView: some View {
