@@ -13,6 +13,7 @@ struct AddNewHealthDataSheet: View {
     
     @State private var addDataDate: Date = .now
     @State private var addDataValue: String = ""
+    @State private var valueIsInvalid: Bool = false
     @State private var isShowingError = false
     @State private var healthManagerError: HealthManagerError = .unableToCompleteRequest
     
@@ -20,13 +21,21 @@ struct AddNewHealthDataSheet: View {
         NavigationStack {
             Form {
                 DatePicker("Date", selection: $addDataDate, displayedComponents: .date)
-                HStack {
-                    Text("Steps")
-                    Spacer()
-                    TextField("Value", text: $addDataValue)
-                        .keyboardType(.numberPad)
-                        .multilineTextAlignment(.trailing)
-                        .frame(width: 140)
+                VStack(alignment: .trailing) {
+                    HStack {
+                        Text("Steps")
+                        Spacer()
+                        TextField("Value", text: $addDataValue)
+                            .keyboardType(.numberPad)
+                            .multilineTextAlignment(.trailing)
+                            .frame(width: 140)
+                    }
+                    if valueIsInvalid {
+                        Text("Must be a numeric value")
+                            .foregroundStyle(.red)
+                            .font(.footnote)
+                            .padding(.top, 2)
+                    }
                 }
             }
             .navigationTitle("Add new Data")
@@ -51,7 +60,11 @@ struct AddNewHealthDataSheet: View {
                     Button("Add") {
                         Task {
                             do {
-                                guard let value = Double(addDataValue) else { return }
+                                guard let value = Double(addDataValue) else {
+                                    valueIsInvalid = true
+                                    addDataValue = ""
+                                    return
+                                }
                                 
                                 try await hkManager.addStepData(date: addDataDate ,value: value)
                                 dismiss()
