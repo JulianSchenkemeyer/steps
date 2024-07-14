@@ -43,58 +43,64 @@ struct StepChart: View {
                 .foregroundStyle(.secondary)
             }
             
-            Chart {
-                if let selectedHealthMetric {
-                    RuleMark(x: .value("Selected Metric",
-                                       selectedHealthMetric.date,
-                                       unit: .day))
-                    .offset(y: -10)
-                    .annotation(position: .top,
-                                alignment: .center,
-                                spacing: 0,
-                                overflowResolution: .init(x: .fit(to: .chart))) {
-                        annotationView
+            if steps.isEmpty {
+                ChartDataUnavaibleView(systemImage: "chart.bar",
+                                       title: "No Data",
+                                       description: "There is no step count data from the Health App")
+            } else {
+                Chart {
+                    if let selectedHealthMetric {
+                        RuleMark(x: .value("Selected Metric",
+                                           selectedHealthMetric.date,
+                                           unit: .day))
+                        .offset(y: -10)
+                        .annotation(position: .top,
+                                    alignment: .center,
+                                    spacing: 0,
+                                    overflowResolution: .init(x: .fit(to: .chart))) {
+                            annotationView
+                        }
+                    }
+                    
+                    RuleMark(y: .value("Average", averageSteps))
+                        .foregroundStyle(.black.opacity(0.75))
+                        .lineStyle(.init(lineWidth: 1, dash: [7]))
+                    
+                    ForEach(steps) { step in
+                        BarMark(
+                            x: .value("Date",
+                                      step.date,
+                                      unit: .day),
+                            y: .value("Count", step.value)
+                        )
+                        .foregroundStyle(Color.cyan.gradient)
+                        .opacity(selectedDate == nil || selectedHealthMetric?.date == step.date ? 1 : 0.2)
                     }
                 }
-                
-                RuleMark(y: .value("Average", averageSteps))
-                    .foregroundStyle(.black.opacity(0.75))
-                    .lineStyle(.init(lineWidth: 1, dash: [7]))
-                
-                ForEach(steps) { step in
-                    BarMark(
-                        x: .value("Date",
-                                  step.date,
-                                  unit: .day),
-                        y: .value("Count", step.value)
-                    )
-                    .foregroundStyle(Color.cyan.gradient)
-                    .opacity(selectedDate == nil || selectedHealthMetric?.date == step.date ? 1 : 0.2)
+                .foregroundStyle(.secondary.opacity(0.2))
+                .chartXSelection(value: $selectedDate.animation(.easeInOut))
+                .sensoryFeedback(.selection, trigger: selectedDate) { old, new in
+                    guard let old, let new else { return false }
+                    return old.weekdayInt != new.weekdayInt
+                }
+                .chartXAxis {
+                    AxisMarks {
+                        AxisValueLabel(format: .dateTime.day().month(.defaultDigits))
+                    }
+                }
+                .chartYAxis {
+                    AxisMarks { value in
+                        AxisGridLine()
+                        AxisValueLabel((value.as(Double.self) ?? 0).formatted(.number.notation(.compactName)))
+                    }
                 }
             }
-            .foregroundStyle(.secondary.opacity(0.2))
-            .chartXSelection(value: $selectedDate.animation(.easeInOut))
-            .chartXAxis {
-                AxisMarks {
-                    AxisValueLabel(format: .dateTime.day().month(.defaultDigits))
-                }
-            }
-            .chartYAxis {
-                AxisMarks { value in
-                    AxisGridLine()
-                    AxisValueLabel((value.as(Double.self) ?? 0).formatted(.number.notation(.compactName)))
-                }
-            }
-            .frame(height: 150)
         }
+        .frame(height: 220)
         .padding()
         .background {
             RoundedRectangle(cornerRadius: 12)
                 .fill(Material.thin)
-        }
-        .sensoryFeedback(.selection, trigger: selectedDate) { old, new in
-            guard let old, let new else { return false }
-            return old.weekdayInt != new.weekdayInt
         }
     }
     
