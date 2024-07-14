@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		24A26BF92C43AB4700B22EE1 /* ChartDataUnavaibleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A26BF82C43AB4700B22EE1 /* ChartDataUnavaibleView.swift */; };
 		24A456A12C1F2F2A00FEFADD /* HealthDataOverviewScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A456A02C1F2F2A00FEFADD /* HealthDataOverviewScreen.swift */; };
 		24A456A32C1F38D400FEFADD /* AddNewHealthDataSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A456A22C1F38D400FEFADD /* AddNewHealthDataSheet.swift */; };
 		24A456A52C20333B00FEFADD /* HealthPermissionPrimingSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A456A42C20333B00FEFADD /* HealthPermissionPrimingSheet.swift */; };
@@ -26,6 +27,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		24A26BF82C43AB4700B22EE1 /* ChartDataUnavaibleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartDataUnavaibleView.swift; sourceTree = "<group>"; };
 		24A456A02C1F2F2A00FEFADD /* HealthDataOverviewScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthDataOverviewScreen.swift; sourceTree = "<group>"; };
 		24A456A22C1F38D400FEFADD /* AddNewHealthDataSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewHealthDataSheet.swift; sourceTree = "<group>"; };
 		24A456A42C20333B00FEFADD /* HealthPermissionPrimingSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthPermissionPrimingSheet.swift; sourceTree = "<group>"; };
@@ -73,6 +75,7 @@
 				24A456A42C20333B00FEFADD /* HealthPermissionPrimingSheet.swift */,
 				24EE9CCF2C273AB2001057C6 /* StepChartView.swift */,
 				24EE9CD32C274600001057C6 /* AverageStepsPerWeekdayView.swift */,
+				24A26BF82C43AB4700B22EE1 /* ChartDataUnavaibleView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -239,6 +242,7 @@
 				24A456A52C20333B00FEFADD /* HealthPermissionPrimingSheet.swift in Sources */,
 				24FED7472C1EFA11007F98D0 /* stepsApp.swift in Sources */,
 				24EE9CD62C27EC62001057C6 /* ChartMath.swift in Sources */,
+				24A26BF92C43AB4700B22EE1 /* ChartDataUnavaibleView.swift in Sources */,
 				24EE9CD42C274600001057C6 /* AverageStepsPerWeekdayView.swift in Sources */,
 				24A456AA2C20844B00FEFADD /* HealthMetric.swift in Sources */,
 			);
