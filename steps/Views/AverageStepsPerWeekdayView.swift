@@ -83,6 +83,11 @@ struct AverageStepsPerWeekdayView: View {
                         }
                     }
                 }
+                .sensoryFeedback(.selection, trigger: selectedWeekday) { oldValue, newValue in
+                    guard let oldDate = oldValue?.date, let newDate = newValue?.date else { return false
+                    }
+                    return oldDate != newDate
+                }
             }
         }
         .frame(height: 300)
