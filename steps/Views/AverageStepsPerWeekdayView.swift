@@ -48,44 +48,55 @@ struct AverageStepsPerWeekdayView: View {
                     .foregroundStyle(.secondary)
                 }
                 
-                Chart {
-                    ForEach(chartData) { weekday in
-                        SectorMark(angle: .value("Average Steps", weekday.value),
-                                   innerRadius: .ratio(0.65),
-                                   outerRadius:  isSelected(weekday) ? 130 : 110,
-                                   angularInset: 1)
-                        .cornerRadius(5)
-                        .foregroundStyle(Color.cyan.gradient)
-                        .opacity(isSelected(weekday) ? 1 : 0.2)
-                    }
-                }
-                .chartAngleSelection(value: $selectedData.animation(.easeInOut))
-                .onChange(of: selectedData) { old, new in
-                    if new == nil {
-                        selectedData = old
-                    }
-                }
-                .chartBackground { proxy in
-                    GeometryReader { geometry in
-                        if let plotFrame = proxy.plotFrame, let selectedWeekday {
-                            let frame = geometry[plotFrame]
-                            VStack {
-                                Text(selectedWeekday.date.weekdayTitle)
-                                    .font(.title3.bold())
-                                    .contentTransition(.identity)
-                                
-                                Text(selectedWeekday.value, format: .number.precision(.fractionLength(0)))
-                                    .contentTransition(.numericText())
-                                    .fontWeight(.medium)
-                                    .foregroundStyle(.secondary)
-                            }
-                            .position(x: frame.midX, y: frame.midY)
+                if chartData.isEmpty {
+                    ChartDataUnavaibleView(systemImage: "chart.pie",
+                                           title: "No Data",
+                                           description: "There is no step count data from the Health App")
+                } else {
+                    Chart {
+                        ForEach(chartData) { weekday in
+                            SectorMark(angle: .value("Average Steps", weekday.value),
+                                       innerRadius: .ratio(0.65),
+                                       outerRadius:  isSelected(weekday) ? 130 : 110,
+                                       angularInset: 1)
+                            .cornerRadius(5)
+                            .foregroundStyle(Color.cyan.gradient)
+                            .opacity(isSelected(weekday) ? 1 : 0.2)
                         }
+                    }
+                    .chartAngleSelection(value: $selectedData.animation(.easeInOut))
+                    .onChange(of: selectedData) { old, new in
+                        if new == nil {
+                            selectedData = old
+                        }
+                    }
+                    .chartBackground { proxy in
+                        GeometryReader { geometry in
+                            if let plotFrame = proxy.plotFrame, let selectedWeekday {
+                                let frame = geometry[plotFrame]
+                                VStack {
+                                    Text(selectedWeekday.date.weekdayTitle)
+                                        .font(.title3.bold())
+                                        .contentTransition(.identity)
+                                    
+                                    Text(selectedWeekday.value, format: .number.precision(.fractionLength(0)))
+                                        .contentTransition(.numericText())
+                                        .fontWeight(.medium)
+                                        .foregroundStyle(.secondary)
+                                }
+                                .position(x: frame.midX, y: frame.midY)
+                            }
+                        }
+                    }
+                    .sensoryFeedback(.selection, trigger: selectedWeekday) { oldValue, newValue in
+                        guard let oldDate = oldValue?.date, let newDate = newValue?.date else { return false
+                        }
+                        return oldDate != newDate
                     }
                 }
             }
         }
-        .frame(height: 300)
+        .frame(height: 320)
         .padding()
         .background {
             RoundedRectangle(cornerRadius: 12)
