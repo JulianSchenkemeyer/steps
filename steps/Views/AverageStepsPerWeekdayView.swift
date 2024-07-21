@@ -13,14 +13,15 @@ struct AverageStepsPerWeekdayView: View {
     var chartData: [HealthMetric]
     
     @State private var selectedData: Double? = 0
+    @State private var lastSelectedValue: Double = 0
+
     
     var selectedWeekday: HealthMetric? {
-        guard let selectedData else { return nil }
         var total = 0.0
         
         return chartData.first {
             total += $0.value
-            return selectedData <= total
+            return lastSelectedValue <= total
         }
     }
     
@@ -47,11 +48,13 @@ struct AverageStepsPerWeekdayView: View {
                         .opacity(isSelected(weekday) ? 1 : 0.2)
                     }
                 }
-                .chartAngleSelection(value: $selectedData.animation(.easeInOut))
+                .chartAngleSelection(value: $selectedData)
                 .onChange(of: selectedData) { old, new in
-                    if new == nil {
-                        selectedData = old
+                    guard let new else {
+                        lastSelectedValue = old ?? 0
+                        return
                     }
+                    lastSelectedValue = new
                 }
                 .chartBackground { proxy in
                     GeometryReader { geometry in
