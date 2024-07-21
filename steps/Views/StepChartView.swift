@@ -15,6 +15,7 @@ struct StepChart: View {
     var averageSteps: Double {
         guard !steps.isEmpty else { return 0 }
         let totalSteps = steps.reduce(0.0) { $0 + $1.value }
+        
         return totalSteps / Double(steps.count)
     }
     
@@ -24,24 +25,10 @@ struct StepChart: View {
     }
     
     var body: some View {
-        VStack(spacing: 20) {
-            VStack {
-                NavigationLink(value: "Steps") {
-                    HStack {
-                        VStack(alignment: .leading) {
-                            Label("Steps", systemImage: "figure.walk")
-                                .font(.title3.bold())
-                                .foregroundStyle(.cyan)
-                            Text("Avg: \(Int(averageSteps), format: .number.notation(.compactName)) Steps")
-                                .font(.caption)
-                        }
-                        Spacer()
-                        
-                        Image(systemName: "chevron.right")
-                    }
-                }
-                .foregroundStyle(.secondary)
-            }
+        ChartContainerWithNavigation(title: "Steps",
+                                     systemImage: "figure.walk",
+                                     subtitle: "Avg: \(averageSteps.formatted(.number.notation(.compactName))) Steps",
+                                     context: "steps") {
             
             if steps.isEmpty {
                 ChartDataUnavaibleView(systemImage: "chart.bar",
@@ -96,12 +83,7 @@ struct StepChart: View {
                 }
             }
         }
-        .frame(height: 220)
-        .padding()
-        .background {
-            RoundedRectangle(cornerRadius: 12)
-                .fill(Material.thin)
-        }
+                                     .frame(height: 220)
     }
     
     var annotationView: some View {
